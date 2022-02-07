@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.persons {
+			width: 300px;
+			float: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="persons">
+		Prices:
+		<ul id="personsList">
+			<li>
+				<span>Milk</span> <span>1</span>
+			</li>
+		</ul>
+	</div>
+	<form action="">
+		<label for="">First Name</label><br>
+		<input type="text" id="firstName">
+		<br>
+		<label for="">Last Name</label><br>
+		<input type="text" id="lastName">
+		<br>
+		<label for="">Age</label><br>
+		<input type="text" id="age">
+		<br>
+		<label for="">City</label><br>
+		<input type="text" id="city">
+		<br>
+		<label for="">Only for Krakow</label><br>
+		<div type="text" id="additionalField"></div>
+		<br>
+		<button type="submit" id="myBtnAdd">Add Person</button>
+		<br>
+		<button type="submit" id="myBtnOldMan">Find The Oldest Man</button>
+		<br>
+		<button type="submit" id="myBtnKrK">Only Krakow People</button>
+	</form>
+	<ol id="TheOldestList">
+		<li>
+			<span>Milk</span> x <span>3</span>
+		</li>
+	</ol>
+
+	<script src="js/index.js"></script>
+</body>
+
+</html>

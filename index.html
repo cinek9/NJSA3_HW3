@@ -8,6 +8,21 @@
 	<title>Document</title>
 	<style>
 		.persons {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	</style>
+	<style>
+		.onlyKrk {
+			top: 0;
+			right: 0;
+			width: 300px;
+			float: right;
+		}
+	</style>
+	<style>
+		.oldest {
 			width: 300px;
 			float: right;
 		}
@@ -15,42 +30,62 @@
 </head>
 
 <body>
-	<div class="persons">
-		Prices:
-		<ul id="personsList">
-			<li>
-				<span>Milk</span> <span>1</span>
-			</li>
-		</ul>
-	</div>
 	<form action="">
 		<label for="">First Name</label><br>
 		<input type="text" id="firstName">
 		<br>
+		<br>
 		<label for="">Last Name</label><br>
 		<input type="text" id="lastName">
+		<br>
 		<br>
 		<label for="">Age</label><br>
 		<input type="text" id="age">
 		<br>
+		<br>
 		<label for="">City</label><br>
 		<input type="text" id="city">
 		<br>
-		<label for="">Only for Krakow</label><br>
+		<br>
 		<div type="text" id="additionalField"></div>
 		<br>
 		<button type="submit" id="myBtnAdd">Add Person</button>
 		<br>
+		<br>
 		<button type="submit" id="myBtnOldMan">Find The Oldest Man</button>
 		<br>
+		<br>
 		<button type="submit" id="myBtnKrK">Only Krakow People</button>
+		<br>
+		<br>
+		<div class="persons">
+			Persons:
+			<ul id="personsList">
+			</ul>
+		</div>
 	</form>
-	<ol id="TheOldestList">
-		<li>
-			<span>Milk</span> x <span>3</span>
-		</li>
-	</ol>
 
+	<label class="onlyKrk" for="Only from Krakow">
+		Only from Krakow is:
+		<ul id="onlyKrkList">
+
+		</ul>
+	</label><br>
+	</div>
+	<div class="oldest">
+		The Oldest Person is:
+		<ol class="oldest" id="TheOldestList">
+			<li>
+
+			</li>
+		</ol>
+	</div>
+
+	<div class="persons">
+		Persons:
+		<ul id="personsList">
+		</ul>
+	</div>
 	<script src="js/index.js"></script>
 </body>
 

@@ -38,6 +38,16 @@ function renderOldestList() {
     }
 }
 
+function renderKrkList() {
+    const onlyKrkListElement = document.getElementById('TheKrkList');
+    onlyKrkListElement.innerHTML = '';
+    for (let i = 0; i < onlyKrkList.length; i++) {
+        const onlyKrkElement = document.createElement('li');
+        onlyKrkElement.innerText = `${oldestList[i].firstName} ' ' ${oldestList[i].lastName} ' ' ${oldestList[i].age} ' ' ${oldestList[i].city}`;
+        onlyKrkListElement.appendChild(onlyKrkElement);
+    }
+}
+
 function isValidData() {
     const personFirstNameElement = document.getElementById('firstName');
     const personLastNameElement = document.getElementById('lastName');
@@ -79,15 +89,35 @@ function init() {
             return;
         }
 
-        const olderList = {
+        const PersonList = {
             firstName: personFirstNameElement.value,
             lastName: personLastNameElement.value,
             age: personAgeElement.value,
             city: personCityElement.value
         }
 
-        oldestList.push(olderList);
+        const OlderList = {
+            firstName: personFirstNameElement.value,
+            lastName: personLastNameElement.value,
+            age: personAgeElement.value,
+            city: personCityElement.value
+        }
+
+        const OnlyKrkList = {
+            firstName: personFirstNameElement.value,
+            lastName: personLastNameElement.value,
+            age: personAgeElement.value,
+            city: personCityElement.value
+        }
+
+        personsList.push(PersonList);
+        renderPersonsList();
+
+        oldestList.push(OlderList);
         renderOldestList();
+
+        onlyKrkList.push(OnlyKrkList);
+        renderKrkList();
 
         personFirstNameElement.value = '';
         personLastNameElement.value = '';
@@ -98,4 +128,5 @@ function init() {
 
 init();
 renderPersonsList();
-renderOldestList();  
+renderOldestList();
+renderKrkList();

@@ -14,9 +14,19 @@ const personsList = [
     Person('Ireneusz', 'Dobrowski', 33, 'Katowice')
 ];
 
-const oldestList = [];
+const oldestList = [
+    Person('Andrzej', 'Kowalski', 44, 'Krakow'),
+    Person('Dawid', 'Nowak', 25, 'Warszawa'),
+    Person('Karolina', 'Tomaszewska', 31, 'Krakow'),
+    Person('Ireneusz', 'Dobrowski', 33, 'Katowice')
+];
 
-const onlyKrkList = [];
+const onlyKrkList = [
+    Person('Andrzej', 'Kowalski', 44, 'Krakow'),
+    Person('Dawid', 'Nowak', 25, 'Warszawa'),
+    Person('Karolina', 'Tomaszewska', 31, 'Krakow'),
+    Person('Ireneusz', 'Dobrowski', 33, 'Katowice')
+];
 
 function renderPersonsList() {
     const personsListElement = document.getElementById('personsList');

@@ -12,7 +12,7 @@ const personsList = [
     Person('Dawid', 'Nowak', 25, 'Warszawa'),
     Person('Karolina', 'Tomaszewska', 31, 'Krakow'),
     Person('Ireneusz', 'Dobrowski', 33, 'Katowice')
-]
+];
 
 const oldestList = [];
 
@@ -22,21 +22,19 @@ function renderPersonsList() {
     const personsListElement = document.getElementById('personsList');
     personsListElement.innerHTML = '';
     for (let i = 0; i < personsList.length; i++) {
-        const personsListElement = document.createElement('li');
-        personsListElement.innerText = `${personsList[i].firstName} ' ' ${personsList[i].lastName} ' ' ${personsList[i].age} ' ' ${personsList[i].city}`;
-        //priceListElement.appendChild(productElement);
+        const personElement = document.createElement('li');
+        personElement.innerText = `${personsList[i].firstName} ' ' ${personsList[i].lastName} ' ' ${personsList[i].age} ' ' ${personsList[i].city}`;
+        personsListElement.appendChild(personElement);
     }
 }
 
 function renderOldestList() {
     const olderListElement = document.getElementById('TheOldestList');
-
     olderListElement.innerHTML = '';
-
-    for (let i = 0; i < personsList.length; i++) {
-        const olderListElement = document.createElement('li');
-        olderListElement.innerText = `${personsList[i].firstName} ' ' ${personsList[i].lastName} ' ' ${personsList[i].age} ' ' ${personsList[i].city}`;
-        //orderListElement.appendChild(productElement);
+    for (let i = 0; i < oldestList.length; i++) {
+        const olderElement = document.createElement('li');
+        olderElement.innerText = `${oldestList[i].firstName} ' ' ${oldestList[i].lastName} ' ' ${oldestList[i].age} ' ' ${oldestList[i].city}`;
+        olderListElement.appendChild(olderElement);
     }
 }
 
@@ -76,19 +74,20 @@ function init() {
         const personAgeElement = document.getElementById('age');
         const personCityElement = document.getElementById('city');
 
+
         if (!isValidData()) {
             return;
         }
 
-        const older = {
-            firstname: personFirstNameElement.value,
-            lastname: personLastNameElement.value,
+        const olderList = {
+            firstName: personFirstNameElement.value,
+            lastName: personLastNameElement.value,
             age: personAgeElement.value,
             city: personCityElement.value
         }
 
-        //       olderList.push(older);
-        //       renderOldestList();
+        oldestList.push(olderList);
+        renderOldestList();
 
         personFirstNameElement.value = '';
         personLastNameElement.value = '';
@@ -99,4 +98,4 @@ function init() {
 
 init();
 renderPersonsList();
-//renderOldestList();  
+renderOldestList();  

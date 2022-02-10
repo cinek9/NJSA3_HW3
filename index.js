@@ -39,12 +39,21 @@ function renderPersonsList() {
 }
 
 function renderOldestList() {
+    let max = oldestList[0].age;
+    let maxIndex = 0;
+    let maxName = "";
     const olderListElement = document.getElementById('TheOldestList');
     olderListElement.innerHTML = '';
     for (let i = 0; i < oldestList.length; i++) {
-        const olderElement = document.createElement('li');
-        olderElement.innerText = `${oldestList[i].firstName} ' ' ${oldestList[i].lastName} ' ' ${oldestList[i].age} ' ' ${oldestList[i].city}`;
-        olderListElement.appendChild(olderElement);
+        if (oldestList[i].age == max) {
+            maxIndex = i;
+            max = oldestList[i].age;
+            maxName = oldestList[i].name;
+            const olderElement = document.createElement('li');
+            olderElement.innerText = `${oldestList[i].firstName} ' ' ${oldestList[i].lastName} ' ' ${oldestList[i].age} ' ' ${oldestList[i].city}`;
+            olderListElement.appendChild(olderElement);
+        }
+
     }
 }
 
@@ -52,9 +61,12 @@ function renderKrkList() {
     const onlyKrkListElement = document.getElementById('TheKrkList');
     onlyKrkListElement.innerHTML = '';
     for (let i = 0; i < onlyKrkList.length; i++) {
-        const onlyKrkElement = document.createElement('li');
-        onlyKrkElement.innerText = `${oldestList[i].firstName} ' ' ${oldestList[i].lastName} ' ' ${oldestList[i].age} ' ' ${oldestList[i].city}`;
-        onlyKrkListElement.appendChild(onlyKrkElement);
+        if (onlyKrkList[i].city == 'Krakow') {
+            const onlyKrkElement = document.createElement('li');
+            onlyKrkElement.innerText = `${oldestList[i].firstName} ' ' ${oldestList[i].lastName} ' ' ${oldestList[i].age} ' ' ${oldestList[i].city}`;
+            onlyKrkListElement.appendChild(onlyKrkElement);
+        }
+
     }
 }
 
@@ -85,6 +97,9 @@ function isValidData() {
 
 function init() {
     const myBtnAdd = document.getElementById('myBtnAdd');
+    const myBtnOldMan = document.getElementById('myBtnOldMan');
+    const myBtnKrK = document.getElementById('myBtnKrK');
+
 
     myBtnAdd.addEventListener('click', (event) => {
         event.preventDefault();

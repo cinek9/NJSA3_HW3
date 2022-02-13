@@ -3,25 +3,14 @@ function Person(firstName, lastName, age, city) {
         firstName,
         lastName,
         age,
-        city
+        city,
+        fullName: function () {
+            return `${this.firstName} ${this.lastName}`;
+        }
     }
 }
 
 const personsList = [
-    Person('Andrzej', 'Kowalski', 44, 'Krakow'),
-    Person('Dawid', 'Nowak', 25, 'Warszawa'),
-    Person('Karolina', 'Tomaszewska', 31, 'Krakow'),
-    Person('Ireneusz', 'Dobrowski', 33, 'Katowice')
-];
-
-const oldestList = [
-    Person('Andrzej', 'Kowalski', 44, 'Krakow'),
-    Person('Dawid', 'Nowak', 25, 'Warszawa'),
-    Person('Karolina', 'Tomaszewska', 31, 'Krakow'),
-    Person('Ireneusz', 'Dobrowski', 33, 'Katowice')
-];
-
-const onlyKrkList = [
     Person('Andrzej', 'Kowalski', 44, 'Krakow'),
     Person('Dawid', 'Nowak', 25, 'Warszawa'),
     Person('Karolina', 'Tomaszewska', 31, 'Krakow'),
@@ -38,35 +27,38 @@ function renderPersonsList() {
     }
 }
 
+function createLiElement(person, parentElement) {
+    const element = document.createElement('li');
+    element.innerText = `${person.firstName} ${person.lastName} ${person.age} ${person.city}`;
+    parentElement.appendChild(element);
+}
+
 function renderOldestList() {
-    let max = oldestList[0].age;
+    let max = personsList[0].age;
     let maxIndex = 0;
-    let maxName = "";
+
+    for (let i = 0; i < personsList.length; i++) {
+        if (personsList[i].age > max) {
+            max = personsList[i].age
+            maxIndex = i;
+        }
+    }
+
     const olderListElement = document.getElementById('TheOldestList');
     olderListElement.innerHTML = '';
-    for (let i = 0; i < oldestList.length; i++) {
-        if (oldestList[i].age == max) {
-            maxIndex = i;
-            max = oldestList[i].age;
-            maxName = oldestList[i].name;
-            const olderElement = document.createElement('li');
-            olderElement.innerText = `${oldestList[i].firstName} ' ' ${oldestList[i].lastName} ' ' ${oldestList[i].age} ' ' ${oldestList[i].city}`;
-            olderListElement.appendChild(olderElement);
-        }
+    const person = personsList[maxIndex];
+    createLiElement(person, olderListElement);
 
-    }
 }
 
 function renderKrkList() {
     const onlyKrkListElement = document.getElementById('TheKrkList');
     onlyKrkListElement.innerHTML = '';
-    for (let i = 0; i < onlyKrkList.length; i++) {
-        if (onlyKrkList[i].city == 'Krakow') {
-            const onlyKrkElement = document.createElement('li');
-            onlyKrkElement.innerText = `${oldestList[i].firstName} ' ' ${oldestList[i].lastName} ' ' ${oldestList[i].age} ' ' ${oldestList[i].city}`;
-            onlyKrkListElement.appendChild(onlyKrkElement);
+    for (let i = 0; i < personsList.length; i++) {
+        if (personsList[i].city == 'Krakow') {
+            const person = personsList[i];
+            createLiElement(person, onlyKrkListElement);
         }
-
     }
 }
 
@@ -100,7 +92,6 @@ function init() {
     const myBtnOldMan = document.getElementById('myBtnOldMan');
     const myBtnKrK = document.getElementById('myBtnKrK');
 
-
     myBtnAdd.addEventListener('click', (event) => {
         event.preventDefault();
 
@@ -109,46 +100,39 @@ function init() {
         const personAgeElement = document.getElementById('age');
         const personCityElement = document.getElementById('city');
 
-
         if (!isValidData()) {
             return;
         }
 
-        const PersonList = {
-            firstName: personFirstNameElement.value,
-            lastName: personLastNameElement.value,
-            age: personAgeElement.value,
-            city: personCityElement.value
-        }
+        const person = Person(
+            personFirstNameElement.value,
+            personLastNameElement.value,
+            personAgeElement.value,
+            personCityElement.value
+        );
 
-        const OlderList = {
-            firstName: personFirstNameElement.value,
-            lastName: personLastNameElement.value,
-            age: personAgeElement.value,
-            city: personCityElement.value
-        }
-
-        const OnlyKrkList = {
-            firstName: personFirstNameElement.value,
-            lastName: personLastNameElement.value,
-            age: personAgeElement.value,
-            city: personCityElement.value
-        }
-
-        personsList.push(PersonList);
+        personsList.push(person);
         renderPersonsList();
 
-        oldestList.push(OlderList);
-        renderOldestList();
-
-        onlyKrkList.push(OnlyKrkList);
-        renderKrkList();
+        // renderOldestList();
+        // renderKrkList();
 
         personFirstNameElement.value = '';
         personLastNameElement.value = '';
         personAgeElement.value = '';
         personCityElement.value = '';
     });
+
+    myBtnOldMan.addEventListener('click', (event) => {
+        event.preventDefault();
+        renderOldestList();
+    });
+
+    myBtnKrK.addEventListener('click', (event) => {
+        event.preventDefault();
+        renderKrkList();
+    });
+
 }
 
 init();

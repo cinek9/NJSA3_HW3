@@ -114,9 +114,6 @@ function init() {
         personsList.push(person);
         renderPersonsList();
 
-        // renderOldestList();
-        // renderKrkList();
-
         personFirstNameElement.value = '';
         personLastNameElement.value = '';
         personAgeElement.value = '';

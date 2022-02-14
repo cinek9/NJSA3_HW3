@@ -1,14 +1,14 @@
-function Product(name, price) {
-    return {
-        name,
-        price
+class Product {
+    constructor(name, price) {
+        this.name = name;
+        this.price = price
     }
 }
 
 const priceList = [
-    Product('Milk', 1),
-    Product('Bread', 2),
-    Product('Egg', 0.3)
+    new Product('Milk', 1),
+    new Product('Bread', 2),
+    new Product('Egg', 0.3),
 ]
 
 const orderList = [];

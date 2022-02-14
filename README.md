@@ -1,14 +1,9 @@
-# NJSA3_HW3
+Dodać do istniejącego projektu dwie klasy:
 
-/* zad.1 - Stworzyć mini aplikację - formularz na stronie zawierający pola: name, last name, age i city.
-Są 3 buttony na stronie: 
-- add - dodaje do listy* persone z wpisanymi w inputy wartościami,
-- old man - do dodatkowego pola wpisuje imię i nazwisko najstarszej osoby,
-- Krakow people - do dodatkowego pola wpisuje po przecinku wszyskich mieszkańców Krakowa.
-No i to dodatkowe pole jako div id="additionalField"
-Po prostu zróbcie sobie jakąś globalną stałą np. listOfPersons i z nią pracujemy.
+.green{ background: green; }
 
-"index.js
-const listOfPersons = [];
-// tutaj reszta waszego kodu
-*/
+.red{ background: red; }
+
+Dodawać odpowiednią klasę do Naszego div w zależności, czy przekracza budget, czy nie. Można rozbudować listę produktów, żeby było więcej produktów do wpisywania.
+
+*Zadanie dodatkowę: utwórz TOTAL budżet i koloruj elementy, które już się nie mieszczą w TOTAL budżet.

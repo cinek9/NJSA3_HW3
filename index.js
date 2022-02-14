@@ -1,141 +1,111 @@
-function Person(firstName, lastName, age, city) {
+function Product(name, price) {
     return {
-        firstName,
-        lastName,
-        age,
-        city,
-        fullName: function () {
-            return `${this.firstName} ${this.lastName}`;
+        name,
+        price
+    }
+}
+
+const priceList = [
+    Product('Milk', 1),
+    Product('Bread', 2),
+    Product('Egg', 0.3)
+]
+
+const orderList = [];
+
+function TotalBudget(price, amount) {
+    var totalBudget = price * amount;
+    return totalBudget;
+}
+
+function renderPriceList() {
+    const priceListElement = document.getElementById('priceList');
+    priceListElement.innerHTML = '';
+    for (let i = 0; i < priceList.length; i++) {
+        const productElement = document.createElement('li');
+        productElement.innerText = `${priceList[i].name} cost ${priceList[i].price}`;
+        priceListElement.appendChild(productElement);
+    }
+}
+
+function renderOrderList() {
+    const orderListElement = document.getElementById('productsList');
+    orderListElement.innerHTML = '';
+
+    for (let i = 0; i < orderList.length; i++) {
+        const productElement = document.createElement('li');
+        productElement.innerText = `${orderList[i].name} x ${orderList[i].amount}`;
+        orderListElement.appendChild(productElement);
+    }
+}
+
+function checkOverBudget() {
+    const budgetElement = document.getElementById('productMaxPrice');
+
+
+    budgetElement.addEventListener('change', (event) => {
+        event.preventDefault();
+        if (event.target.value.Number >= budgetElement.value) {
+            event.target.classList.add('green');
         }
-    }
-}
+        else {
+            event.target.classList.add('red');
 
-const personsList = [
-    Person('Andrzej', 'Kowalski', 44, 'Krakow'),
-    Person('Dawid', 'Nowak', 25, 'Warszawa'),
-    Person('Karolina', 'Tomaszewska', 31, 'Krakow'),
-    Person('Ireneusz', 'Dobrowski', 33, 'Katowice')
-];
-
-function renderPersonsList() {
-    const personsListElement = document.getElementById('personsList');
-    personsListElement.innerHTML = '';
-    for (let i = 0; i < personsList.length; i++) {
-        const personElement = document.createElement('li');
-        personElement.innerText = `${personsList[i].firstName} ' ' ${personsList[i].lastName} ' ' ${personsList[i].age} ' ' ${personsList[i].city}`;
-        personsListElement.appendChild(personElement);
-    }
-}
-
-function createLiElement(person, parentElement) {
-    const element = document.createElement('li');
-    element.innerText = `${person.firstName} ${person.lastName} ${person.age} ${person.city}`;
-    parentElement.appendChild(element);
-}
-
-function renderOldestList() {
-    let max = personsList[0].age;
-    let maxIndex = 0;
-
-    for (let i = 0; i < personsList.length; i++) {
-        if (personsList[i].age > max) {
-            max = personsList[i].age
-            maxIndex = i;
-        }
-    }
-
-    const olderListElement = document.getElementById('TheOldestList');
-    olderListElement.innerHTML = '';
-    const person = personsList[maxIndex];
-    createLiElement(person, olderListElement);
-
-}
-
-function renderKrkList() {
-    const onlyKrkListElement = document.getElementById('TheKrkList');
-    onlyKrkListElement.innerHTML = '';
-    for (let i = 0; i < personsList.length; i++) {
-        if (personsList[i].city == 'Krakow') {
-            const person = personsList[i];
-            createLiElement(person, onlyKrkListElement);
-        }
-    }
+        };
+    });
 }
 
 function isValidData() {
-    const personFirstNameElement = document.getElementById('firstName');
-    const personLastNameElement = document.getElementById('lastName');
-    const personAgeElement = document.getElementById('age');
-    const personCityElement = document.getElementById('city');
+    const productNameElement = document.getElementById('productName');
+    const productAmountElement = document.getElementById('productAmount');
+    const productMaxPriceElement = document.getElementById('productMaxPrice');
 
-    if (personFirstNameElement.value === '') {
-        console.error('first name can not be empty');
+    if (productNameElement.value === '') {
+        console.error('product name can not be empty');
         return false;
     }
-    if (personLastNameElement.value === '') {
-        console.error('last name can not be empty');
+    if (productAmountElement.value === ''
+        || Number.isNaN(Number(productAmountElement.value))) {
+        console.error('product amount can not be empty');
         return false;
     }
-    if (personAgeElement.value === '' || Number.isNaN(Number(personAgeElement.value))) {
-        console.error('age can not be empty');
-        return false;
-    }
-    if (personCityElement.value === '') {
-        console.error('city can not be empty');
+    if (productMaxPriceElement.value === '') {
+        console.error('product budget can not be empty');
         return false;
     }
     return true;
 }
 
 function init() {
-    const myBtnAdd = document.getElementById('myBtnAdd');
-    const myBtnOldMan = document.getElementById('myBtnOldMan');
-    const myBtnKrK = document.getElementById('myBtnKrK');
+    const myBtn = document.getElementById('myBtn');
 
-    myBtnAdd.addEventListener('click', (event) => {
+    myBtn.addEventListener('click', (event) => {
         event.preventDefault();
 
-        const personFirstNameElement = document.getElementById('firstName');
-        const personLastNameElement = document.getElementById('lastName');
-        const personAgeElement = document.getElementById('age');
-        const personCityElement = document.getElementById('city');
+        const productNameElement = document.getElementById('productName');
+        const productAmountElement = document.getElementById('productAmount');
+        const productMaxPriceElement = document.getElementById('productMaxPrice');
 
         if (!isValidData()) {
             return;
         }
 
-        const person = Person(
-            personFirstNameElement.value,
-            personLastNameElement.value,
-            personAgeElement.value,
-            personCityElement.value
-        );
+        const order = {
+            name: productNameElement.value,
+            amount: productAmountElement.value,
+            budget: productMaxPriceElement.value
+        }
 
-        personsList.push(person);
-        renderPersonsList();
+        orderList.push(order);
+        renderOrderList();
 
-        // renderOldestList();
-        // renderKrkList();
-
-        personFirstNameElement.value = '';
-        personLastNameElement.value = '';
-        personAgeElement.value = '';
-        personCityElement.value = '';
+        productNameElement.value = '';
+        productAmountElement.value = '';
+        productMaxPriceElement.value = '';
     });
-
-    myBtnOldMan.addEventListener('click', (event) => {
-        event.preventDefault();
-        renderOldestList();
-    });
-
-    myBtnKrK.addEventListener('click', (event) => {
-        event.preventDefault();
-        renderKrkList();
-    });
-
 }
 
 init();
-renderPersonsList();
-renderOldestList();
-renderKrkList();
+renderPriceList();
+renderOrderList();
+checkOverBudget();

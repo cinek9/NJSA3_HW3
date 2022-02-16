@@ -1,14 +1,14 @@
-function Product(name, price) {
-    return {
-        name,
-        price
+class Product {
+    constructor(name, price) {
+        this.name = name;
+        this.price = price
     }
 }
 
 const priceList = [
-    Product('Milk', 1),
-    Product('Bread', 2),
-    Product('Egg', 0.3)
+    new Product('Milk', 1),
+    new Product('Bread', 2),
+    new Product('Egg', 0.3),
 ]
 
 const orderList = [];
@@ -35,24 +35,22 @@ function renderOrderList() {
     for (let i = 0; i < orderList.length; i++) {
         const productElement = document.createElement('li');
         productElement.innerText = `${orderList[i].name} x ${orderList[i].amount}`;
-        orderListElement.appendChild(productElement);
-    }
-}
 
-function checkOverBudget() {
-    const budgetElement = document.getElementById('productMaxPrice');
+        function checkOverBudget(productElement, orderList) {
 
+            for (let i = 0; i < orderList.length; i++) {
 
-    budgetElement.addEventListener('change', (event) => {
-        event.preventDefault();
-        if (event.target.value.Number >= budgetElement.value) {
-            event.target.classList.add('green');
-        }
-        else {
-            event.target.classList.add('red');
-
+                if (target.value.Number >= productElement.value) {
+                    target.classList.add('green');
+                }
+                else {
+                    target.classList.add('red');
+                };
+            };
+            checkOverBudget()
+            orderListElement.appendChild(productElement);
         };
-    });
+    }
 }
 
 function isValidData() {
@@ -108,4 +106,3 @@ function init() {
 init();
 renderPriceList();
 renderOrderList();
-checkOverBudget();

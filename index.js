@@ -13,10 +13,19 @@ const priceList = [
 
 const orderList = [];
 
-function TotalBudget(price, amount) {
-    var totalBudget = price * amount;
-    return totalBudget;
+function Produkt(produkt, cena) {
+    return {
+        produkt, cena
+    }
 }
+
+const productList = [
+    Produkt('Mleko', 3),
+    Produkt('Woda', 2),
+    Produkt('Jajka', 5),
+    Produkt('Warzywa', 3),
+    Produkt('Owoce', 7),
+];
 
 function renderPriceList() {
     const priceListElement = document.getElementById('priceList');
@@ -34,29 +43,32 @@ function renderOrderList() {
 
     for (let i = 0; i < orderList.length; i++) {
         const productElement = document.createElement('li');
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Remove';
         productElement.innerText = `${orderList[i].name} x ${orderList[i].amount}`;
+        productElement.appendChild(deleteButton);
+        deleteButton.addEventListener('click', () => {
+            orderList.splice(i, 1);
+            renderOrderList();
+
+        });
+
         orderListElement.appendChild(productElement);
     }
 }
 
-function checkOverBudget() {
-    const budgetElement = document.getElementById('productMaxPrice');
-
-
-    budgetElement.addEventListener('change', (event) => {
-        event.preventDefault();
-        if (event.target.value.Number >= budgetElement.value) {
-            event.target.classList.add('green');
-        }
-        else {
-            event.target.classList.add('red');
-
-        };
-    });
+function renderProductList() {
+    const productListElement = document.getElementById('productList');
+    productListElement.innerHTML = '';
+    for (let i = 0; i < productList.length; i++) {
+        const productElement = document.createElement('li');
+        productElement.innerText = `${productList[i].produkt} ${productList[i].cena}`;
+        productListElement.appendChild(productElement);
+    }
 }
 
 function isValidData() {
-    const productNameElement = document.getElementById('productName');
+    const productNameElement = document.getElementById('selectProductName');
     const productAmountElement = document.getElementById('productAmount');
     const productMaxPriceElement = document.getElementById('productMaxPrice');
 
@@ -78,11 +90,12 @@ function isValidData() {
 
 function init() {
     const myBtn = document.getElementById('myBtn');
+    const myBtnAdd = document.getElementById('addToList');
 
     myBtn.addEventListener('click', (event) => {
         event.preventDefault();
 
-        const productNameElement = document.getElementById('productName');
+        const productNameElement = document.getElementById('selectProductName');
         const productAmountElement = document.getElementById('productAmount');
         const productMaxPriceElement = document.getElementById('productMaxPrice');
 
@@ -103,9 +116,24 @@ function init() {
         productAmountElement.value = '';
         productMaxPriceElement.value = '';
     });
+
+
+    myBtnAdd.addEventListener('click', (event) => {
+        event.preventDefault();
+        const productNameElement = document.getElementById('productName');
+        const productPriceElement = document.getElementById('productPrice');
+
+        const produkt = {
+            name: productNameElement.value,
+            price: productPriceElement.value,
+        }
+        productList.push(produkt);
+        renderProductList();
+
+    });
 }
 
 init();
 renderPriceList();
 renderOrderList();
-checkOverBudget();
+renderProductList();

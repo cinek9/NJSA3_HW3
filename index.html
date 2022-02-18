@@ -7,8 +7,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<style>
-		.prices {
+		.productName {
 			width: 300px;
+			float: right;
+		}
+
+		.productAmount {
+			top: 0;
+			right: 0;
+			width: 300px;
+			float: right;
+		}
+
+		.h1 {
+			top: 0;
+			right: 0;
+			width: 300px;
+			float: left;
+		}
+
+		.ourBudget {
+			top: 100px;
+			right: 500px;
+			width: 300px;
+			float: right;
+		}
+
+		.addToCart {
+			width: 400px;
+			float: right;
+		}
+
+		.prices {
+
+			width: 100px;
 			float: right;
 		}
 
@@ -25,35 +57,72 @@
 </head>
 
 <body>
-	<div class="prices">
-		Prices:
-		<ul id="priceList">
-			<li>
-				<span>Milk</span> <span>1</span>
-			</li>
-		</ul>
-	</div>
 	<form action="">
-		<label for="">Product name</label>
+		<div class="h1">
+			<h1>
+				Strona z listą produktów
+			</h1>
+		</div>
+		<label for="">Nazwa produktu</label><br>
+		<input name="productName" type="text" id="productName">
 		<br>
-		<select id="productName">
+		<br>
+		<label for="">Cena produktu</label><br>
+		<input name="productPrice" type="text" id="productPrice">
+		<br>
+		<br>
+		<button type="submit" id="addToList">Dodaj do listy</button>
+		<br>
+		<br>
+		<div class="products">
+			Products:
+			<ul id="productList">
+			</ul>
+		</div>
+	</form>
+	<form class="prices">
+		<div class="prices">
+			Prices:
+			<ul id="priceList">
+				<li>
+					<span>Milk</span> <span>1</span>
+				</li>
+			</ul>
+		</div>
+	</form>
+	<form action="">
+		<div class="h1">
+			<h1>
+				Strona z listą zakupów
+			</h1>
+		</div>
+		<br>
+		<br>
+		<label class="productName" for="">Product name</label>
+		<br>
+		<br>
+		<select class="productName" id="selectProductName">
 			<option value="Milk">Milk</option>
 			<option value="Bread">Bread</option>
 			<option value="Egg">Egg</option>
 		</select>
 		<br>
 		<br>
-		<label for="">Product amount</label><br>
-		<input type="text" id="productAmount">
+		<label class="productAmount" for="">Product amount</label>
+		<br>
+		<input class="productAmount" type="text" id="productAmount">
 		<br>
 		<br>
-		<label for="">Our budget</label><br>
-		<input type="text" id="productMaxPrice">
+		<label class="addToCart" for="">Our budget</label>
+		<br>
+		<input class="addToCart" type="text" id="productMaxPrice">
 		<br>
 		<br>
-		<button type="submit" id="myBtn">Add to cart</button>
+		<button class="addToCart" type="submit" id="myBtn">Add to cart</button>
+		<br>
+		<br>
 	</form>
-	<ol id="productsList">
+	<ol class="ourBudget" id="productsList">
 		<li>
 			<span>Milk</span> x <span>3</span>
 		</li>

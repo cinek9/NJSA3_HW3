@@ -120,15 +120,21 @@ function init() {
 
     myBtnAdd.addEventListener('click', (event) => {
         event.preventDefault();
+
+
         const productNameElement = document.getElementById('productName');
         const productPriceElement = document.getElementById('productPrice');
 
-        const produkt = {
-            name: productNameElement.value,
-            price: productPriceElement.value,
-        }
+        const produkt = Produkt(
+            productNameElement.value,
+            productPriceElement.value,
+        )
+
         productList.push(produkt);
         renderProductList();
+
+        productNameElement.value = '';
+        productPriceElement.value = '';
 
     });
 }

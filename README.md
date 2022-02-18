@@ -1,9 +1,5 @@
-Dodać do istniejącego projektu dwie klasy:
+Przerobić dodawanie produktu w taki sposób:
 
-.green{ background: green; }
-
-.red{ background: red; }
-
-Dodawać odpowiednią klasę do Naszego div w zależności, czy przekracza budget, czy nie. Można rozbudować listę produktów, żeby było więcej produktów do wpisywania.
-
-*Zadanie dodatkowę: utwórz TOTAL budżet i koloruj elementy, które już się nie mieszczą w TOTAL budżet.
+Zamiast nazwy produktu do inputa, zrobić dropdown w którym będę wybierać interesujący mnie produkt. 
+Ten dropdown będzie się generować na podstawie naszej zahardcodowanej listy.
+Proszę przepisać function Product na class Product.

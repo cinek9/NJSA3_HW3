@@ -53,6 +53,20 @@ function renderOrderList() {
 
         });
 
+
+        for (let j = 0; j < priceList.price; j++) {
+            priceList[j].name = orderList[i].name;
+        }
+        if ((orderList[i].amount * priceList[i].price) <= orderList[i].budget) {
+
+            productElement.classList.add('green');
+        }
+
+        else {
+
+            productElement.classList.add('red');
+        }
+
         orderListElement.appendChild(productElement);
     }
 }

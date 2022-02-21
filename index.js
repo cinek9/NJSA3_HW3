@@ -53,7 +53,6 @@ function renderOrderList() {
 
         });
 
-
         for (let j = 0; j < priceList.price; j++) {
             priceList[j].name = orderList[i].name;
         }
@@ -130,7 +129,6 @@ function init() {
         productAmountElement.value = '';
         productMaxPriceElement.value = '';
     });
-
 
     myBtnAdd.addEventListener('click', (event) => {
         event.preventDefault();

@@ -1,10 +1,5 @@
-Rozbudowac program w nastepujacy sposob:
+Dodać komunikację pomiędzy dwoma stronkami w następujący sposób:
 
-Przedewszystkim zrobmy sobie nazywnictwo. Obecna strone aplikacji bedziemy nazywac "strona z lista zakupow" (LZ).
-
-Ztworzyc nowa strone (bedzie sie nazywac "strona lista produktow" - LP ) na ktorej bedzie formularz = 
-input - nazwa produktu
-input - cena produktu
-button - dodaj do listy.
-
-W LZ dla kazdego elementa zrobic mozliwosc usuwania jego (to co robilismy na zajeciu).
+1. Na Liście produktów tworzymy naszą listę produktów i zapisujemy w localstorage.
+2. Na Liście zakupów wczytujemy tą listę i zapisujemy do local storage zakupy do osobnego pola. 
+3. Zrobić update dla local storage, gdy usuwamy produkt.

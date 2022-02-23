@@ -126,7 +126,6 @@ function init() {
 
     const refreshBtn = document.getElementById('refreshBtn');
     refreshBtn.addEventListener('click', (event) => {
-    myBtnAdd.addEventListener('click', (event) => {
         event.preventDefault();
         let productsStr = localStorage.getItem('products');
         if (productsStr == null) {

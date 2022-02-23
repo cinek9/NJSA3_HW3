@@ -124,12 +124,9 @@ function init() {
         productMaxPriceElement.value = '';
     });
 
-<<<<<<< HEAD
     const refreshBtn = document.getElementById('refreshBtn');
     refreshBtn.addEventListener('click', (event) => {
-=======
     myBtnAdd.addEventListener('click', (event) => {
->>>>>>> 351e4d9931b049da87b3e88486a3b14f1b62f790
         event.preventDefault();
         let productsStr = localStorage.getItem('products');
         if (productsStr == null) {

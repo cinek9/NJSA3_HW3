@@ -5,36 +5,29 @@ class Product {
     }
 }
 
-const priceList = [
-    new Product('Milk', 1),
-    new Product('Bread', 2),
-    new Product('Egg', 0.3),
-]
+let productsStr = localStorage.getItem('products');
+if (productsStr == null) {
+    productsStr = '[]';
+}
+let priceList = JSON.parse(productsStr);
 
-const orderList = [];
-
-function Produkt(produkt, cena) {
-    return {
-        produkt, cena
-    }
+let orderListStr = localStorage.getItem('orderList');
+if (orderListStr == null) {
+    orderListStr = '[]';
 }
 
-const productList = [
-    Produkt('Mleko', 3),
-    Produkt('Woda', 2),
-    Produkt('Jajka', 5),
-    Produkt('Warzywa', 3),
-    Produkt('Owoce', 7),
-];
+const orderList = JSON.parse(orderListStr);
 
 function renderPriceList() {
-    const priceListElement = document.getElementById('priceList');
+    const priceListElement = document.getElementById('selectProductName');
     priceListElement.innerHTML = '';
     for (let i = 0; i < priceList.length; i++) {
-        const productElement = document.createElement('li');
-        productElement.innerText = `${priceList[i].name} cost ${priceList[i].price}`;
+        const productElement = document.createElement('option');
+        productElement.value = priceList[i].name;
+        productElement.innerText = priceList[i].name;
         priceListElement.appendChild(productElement);
     }
+    priceListElement.value = '';
 }
 
 function renderOrderList() {
@@ -52,6 +45,19 @@ function renderOrderList() {
             renderOrderList();
 
         });
+
+        for (let j = 0; j < priceList.price; j++) {
+            priceList[j].name = orderList[i].name;
+        }
+        if ((orderList[i].amount * priceList[i].price) <= orderList[i].budget) {
+
+            productElement.classList.add('green');
+        }
+
+        else {
+
+            productElement.classList.add('red');
+        }
 
         orderListElement.appendChild(productElement);
     }
@@ -110,6 +116,7 @@ function init() {
         }
 
         orderList.push(order);
+        localStorage.setItem('orderList', JSON.stringify(orderList));
         renderOrderList();
 
         productNameElement.value = '';
@@ -117,29 +124,29 @@ function init() {
         productMaxPriceElement.value = '';
     });
 
-
-    myBtnAdd.addEventListener('click', (event) => {
+    const refreshBtn = document.getElementById('refreshBtn');
+    refreshBtn.addEventListener('click', (event) => {
         event.preventDefault();
-
-
-        const productNameElement = document.getElementById('productName');
-        const productPriceElement = document.getElementById('productPrice');
-
-        const produkt = Produkt(
-            productNameElement.value,
-            productPriceElement.value,
-        )
-
-        productList.push(produkt);
-        renderProductList();
-
-        productNameElement.value = '';
-        productPriceElement.value = '';
-
-    });
+        let productsStr = localStorage.getItem('products');
+        if (productsStr == null) {
+            productsStr = '[]';
+        }
+        priceList = JSON.parse(productsStr);
+        renderPriceList();
+        console.log('refreshed');
+    })
 }
 
 init();
 renderPriceList();
 renderOrderList();
-renderProductList();
+
+const refreshBtn = document.getElementById('refreshBtn');
+setInterval(() => {
+    const isChanged = !!Number(localStorage.getItem('changed'));
+    if (isChanged) {
+        localStorage.setItem('changed', '0');
+        refreshBtn.click();
+    }
+
+}, 10000);

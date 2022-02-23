@@ -38,12 +38,6 @@
 			float: right;
 		}
 
-		.prices {
-
-			width: 100px;
-			float: right;
-		}
-
 		.green {
 			background: green;
 			box-shadow: 0px 0px 23px green;
@@ -60,48 +54,13 @@
 	<form action="">
 		<div class="h1">
 			<h1>
-				Strona z listą produktów
-			</h1>
-		</div>
-		<label for="">Nazwa produktu</label><br>
-		<input name="productName" type="text" id="productName">
-		<br>
-		<br>
-		<label for="">Cena produktu</label><br>
-		<input name="productPrice" type="text" id="productPrice">
-		<br>
-		<br>
-		<button type="submit" id="addToList">Dodaj do listy</button>
-		<br>
-		<br>
-		<div class="products">
-			Products:
-			<ul id="productList">
-			</ul>
-		</div>
-	</form>
-	<form class="prices">
-		<div class="prices">
-			Prices:
-			<ul id="priceList">
-				<li>
-					<span>Milk</span> <span>1</span>
-				</li>
-			</ul>
-		</div>
-	</form>
-	<form action="">
-		<div class="h1">
-			<h1>
 				Strona z listą zakupów
 			</h1>
 		</div>
 		<br>
 		<br>
-		<label class="productName" for="">Product name</label>
-		<br>
-		<br>
-		<select class="productName" id="selectProductName">
+		<label for="">Product name</label>
+		<select id="selectProductName">
 			<option value="Milk">Milk</option>
 			<option value="Bread">Bread</option>
 			<option value="Egg">Egg</option>
@@ -121,13 +80,15 @@
 		<button class="addToCart" type="submit" id="myBtn">Add to cart</button>
 		<br>
 		<br>
+		<button class="addToCart" type="submit" id="refreshBtn">Refresh</button>
+		<br>
+		<br>
 	</form>
 	<ol class="ourBudget" id="productsList">
 		<li>
 			<span>Milk</span> x <span>3</span>
 		</li>
 	</ol>
-
 	<script src="index.js"></script>
 </body>
 
